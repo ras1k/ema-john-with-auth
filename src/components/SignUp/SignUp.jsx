@@ -25,7 +25,7 @@ const SignUp = () => {
             setError('Password Must be 6 Characters or Longer');
             return;
         }
-        
+
         createUser(email, password)
         .then(result=>{
             const loggedUser = result.user;
@@ -37,7 +37,7 @@ const SignUp = () => {
     }
     return (
         <div className='form-container'>
-            <h2 className='form-title text-center fw-bold'>Login</h2>
+            <h2 className='form-title text-center fw-bold'>Sign Up</h2>
             <form className='p-2' onSubmit={handleSignUp}>
                 <div className=''>
                     <label htmlFor="email">Email</label>
