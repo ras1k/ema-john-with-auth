@@ -1,5 +1,6 @@
 import React from 'react';
 import './Login.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -17,6 +18,7 @@ const Login = () => {
                 <input type="submit" value="Login" className='btn w-100 btn-outline-success mt-5 text-center' />
 
             </form>
+            <p className='text-center'><small>New To Ema John? <Link to="/signup">Sign Up</Link></small></p>
         </div>
     );
 };

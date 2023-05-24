@@ -1,30 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SignUp.css';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
+    const [error, setError] = useState('')
+
+    const handleSignUp = event =>{
+        event.preventDefault();
+        setError('')
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        const confirm = form.confirm.value;
+        console.log(email, password, confirm)
+
+        if(password !== confirm){
+            setError('Password Does Not Match');
+            return;
+        }
+        else if (password.length <= 6){
+            setError('Password Must be 6 Characters or Longer');
+            return;
+        }
+    }
     return (
         <div className='form-container'>
             <h2 className='form-title text-center fw-bold'>Login</h2>
-            <form className='p-2'>
+            <form className='p-2' onSubmit={handleSignUp}>
                 <div className=''>
-                    <label htmlFor="">Name</label>
-                    <input className='form-control' type="text" id='name' name='name' required />
-                </div>
-                <div className=''>
-                    <label htmlFor="">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input className='form-control' type="email" id='email' name='email' required />
                 </div>
                 <div className=''>
-                    <label htmlFor="">Password</label>
+                    <label htmlFor="password">Password</label>
                     <input className='form-control' type="password" id='password' name='password' required />
                 </div>
                 <div className=''>
-                    <label htmlFor="">Confirm Password</label>
+                    <label htmlFor="confirm">Confirm Password</label>
                     <input className='form-control' type="password" id='confirm' name='confirm' required />
                 </div>
-                <input type="submit" value="Sign Up" className='btn w-100 btn-outline-warning mt-5 text-center' />
+                <input type="submit" value="Sign Up" className='btn w-100 btn-primary mt-5 text-center' />
 
             </form>
+            <p className='text-center'><small>Already Have An Account? <Link to="/login">Login</Link></small></p>
+            <p className='text-center text-danger'><small>{error}</small></p>
         </div>
     );
 };
