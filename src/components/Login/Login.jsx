@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
+
+    const { signIn } = useContext(AuthContext);
+
+    const handleSignIn = () =>{
+        signIn(email, password)
+        .then(result=>{
+
+        })
+        .catch(error=>{
+            console.error(error)
+        })
+    }
     return (
         <div className='form-container'>
             <h2 className='form-title text-center fw-bold'>Login</h2>
