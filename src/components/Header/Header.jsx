@@ -1,17 +1,22 @@
 import React, { useContext } from 'react';
 import './Header.css';
 import logo from '../../images/Logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Header = () => {
 
     const {user, logOut} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location)
 
     const handleLogOut = () =>{
         logOut()
         .then(() => {
+            navigate('/')
             // Sign-out successful.
+
           })
           .catch((error) => {
             console.error(error)
@@ -19,9 +24,11 @@ const Header = () => {
           });
     }
 
+    
+
     return (
         <nav className='header'>
-            <img src={logo} alt="" />
+            <Link to="/"><img src={logo} alt="" /></Link>
             <div>
                 <Link to="/">Shop</Link>
                 <Link to="/orders">Orders</Link>
